@@ -4,7 +4,7 @@ type JSONReturn<T> = Required<{ id: string } & T>;
 
 export class Entity<T = any> {
   public readonly uniqueEntityId: UniqueEntityId;
-  public readonly props: T;
+  protected readonly props: T;
 
   constructor(props: T, id?: UniqueEntityId) {
     this.uniqueEntityId = id ?? new UniqueEntityId();
