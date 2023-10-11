@@ -4,7 +4,7 @@ module.exports = {
     {
       files: ['*.ts', '*.d.ts'],
       parserOptions: {
-        project: './tsconfig.base.json',
+        project: './tsconfig.json',
       },
     },
   ],
