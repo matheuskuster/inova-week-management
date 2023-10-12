@@ -16,16 +16,24 @@ export class Project extends Entity<MainProjectProps> {
   public update(params: Partial<UpdateProjectDTO>) {
     this.props.name = params.name ?? this.props.name;
     this.props.description = params.description ?? this.props.description;
-    this.props.approved = params.approved ?? this.props.approved;
     this.props.leaderUserId = params.leaderUserId ?? this.props.leaderUserId;
     this.props.themeId = params.themeId ?? this.props.themeId;
-    this.props.stand = params.stand ?? this.props.stand;
-    this.props.presentationDay =
-      params.presentationDay ?? this.props.presentationDay;
 
     if (Object.values(params).length > 0) {
       this.props.updatedAt = new Date();
     }
+  }
+
+  public setPresentation(params: { stand: number; presentationDay: Date }) {
+    this.props.stand = params.stand;
+    this.props.presentationDay = params.presentationDay;
+    this.props.updatedAt = new Date();
+  }
+
+  public setApproval(approved: boolean) {
+    this.props.approved = approved;
+    this.props.reviewedAt = new Date();
+    this.props.updatedAt = new Date();
   }
 
   public get name(): string {
@@ -78,6 +86,7 @@ export interface ProjectProps {
   inovaId: string;
   stand?: number;
   presentationDay?: Date;
+  reviewedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
