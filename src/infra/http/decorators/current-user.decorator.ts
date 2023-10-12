@@ -4,6 +4,7 @@ import { type Request } from 'express';
 import { AuthenticatedUser } from '@/types/entities';
 import { UniqueEntityId } from '@/types/value-objects';
 
+// @ts-ignore
 export interface AuthenticatedRequest<U> extends Request {
   user: U;
 }

@@ -7,4 +7,10 @@ export abstract class UsersRepository implements RepositoryInterface<User> {
   public abstract delete(id: string): Promise<void>;
   public abstract findById(id: string): Promise<User | null>;
   public abstract findAll(): Promise<User[]>;
+
+  public abstract findByEmail(email: string): Promise<User | null>;
+  public abstract findByPhone(phone: string): Promise<User | null>;
+  public abstract findByRegistration(
+    registration: string,
+  ): Promise<User | null>;
 }
