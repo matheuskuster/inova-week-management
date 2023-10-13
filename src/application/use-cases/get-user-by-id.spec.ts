@@ -4,7 +4,7 @@ import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repo
 import { NotFoundError } from '@/errors/not-found.error';
 import { GetUserById } from './get-user-by-id';
 
-describe('Get Theme By Id', () => {
+describe('Get User By Id', () => {
   let usersRepository: InMemoryUsersRepository;
   let getUserById: GetUserById;
 
