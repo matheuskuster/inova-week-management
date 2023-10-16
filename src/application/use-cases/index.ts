@@ -2,6 +2,8 @@ export * from './users/create-user';
 export * from './users/get-user-by-id';
 export * from './users/authenticate-user';
 export * from './users/generate-jwt';
+export * from './users/get-users';
+export * from './users/update-user';
 
 export * from './themes/get-theme-by-id';
 export * from './events/get-event-by-id';

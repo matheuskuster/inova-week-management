@@ -13,7 +13,7 @@ export interface CreateUserRequest {
   email: string;
   password: string;
   birthDate: Date;
-  role: string;
+  roles: string[];
 }
 
 @Injectable()
@@ -25,10 +25,14 @@ export class CreateUser {
   ) {}
 
   async execute(request: CreateUserRequest) {
-    const role = await this.rolesRepository.findByName(request.role);
+    const roles = await this.rolesRepository.findManyByNames(request.roles);
 
-    if (!role) {
-      throw new NotFoundError(`Role ${request.role} not found`);
+    if (roles.length !== request.roles.length) {
+      const diff = request.roles.filter(
+        (role) => !roles.map((r) => r.name).includes(role),
+      );
+
+      throw new NotFoundError(`Roles [${diff.join(', ')}] not found`);
     }
 
     const foundUserByEmail = await this.usersRepository.findByEmail(
@@ -67,7 +71,7 @@ export class CreateUser {
       birthDate: request.birthDate,
       phone: request.phone,
       registration: request.registration,
-      roles: [role],
+      roles,
     });
 
     await this.usersRepository.create(user);

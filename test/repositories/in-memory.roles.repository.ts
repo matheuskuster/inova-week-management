@@ -19,4 +19,9 @@ export class InMemoryRolesRepository
 
     return foundRole;
   }
+
+  public async findManyByNames(names: string[]): Promise<Role[]> {
+    const foundRoles = this.roles.filter((role) => names.includes(role.name));
+    return foundRoles;
+  }
 }
