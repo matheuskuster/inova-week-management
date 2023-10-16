@@ -12,7 +12,7 @@ export class DeleteTheme {
     const theme = await this.themeRepository.findById(id);
 
     if (!theme) {
-      throw new NotFoundError(`theme with id ${id} not found`);
+      throw new NotFoundError(`Theme with id ${id} not found`);
     }
 
     await this.themeRepository.delete(id);
