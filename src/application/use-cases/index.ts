@@ -6,6 +6,7 @@ export * from './users/get-users';
 export * from './users/update-user';
 
 export * from './themes/get-theme-by-id';
+export * from './themes/delete-theme';
 
 export * from './events/delete-event';
 export * from './events/get-event-by-id';
