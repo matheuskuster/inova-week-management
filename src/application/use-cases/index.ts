@@ -6,7 +6,13 @@ export * from './users/get-users';
 export * from './users/update-user';
 
 export * from './themes/get-theme-by-id';
+
+export * from './events/delete-event';
 export * from './events/get-event-by-id';
+export * from './events/update-event';
+
+export * from './attendances/create-attendance';
+export * from './attendances/get-event-attendances';
 
 export * from './roles/create-role';
 export * from './roles/get-roles';
