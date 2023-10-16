@@ -11,4 +11,5 @@ export abstract class AttendancesRepository
   public abstract findAll(): Promise<Attendance[]>;
 
   public abstract findByEventId(eventId: string): Promise<Attendance[]>;
+  public abstract findByUserId(userId: string): Promise<Attendance[]>;
 }

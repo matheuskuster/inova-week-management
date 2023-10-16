@@ -13,6 +13,9 @@ export * from './events/update-event';
 
 export * from './attendances/create-attendance';
 export * from './attendances/get-event-attendances';
+export * from './attendances/get-user-attendances';
+export * from './attendances/get-attendance-by-id';
+export * from './attendances/delete-attendance';
 
 export * from './roles/create-role';
 export * from './roles/get-roles';

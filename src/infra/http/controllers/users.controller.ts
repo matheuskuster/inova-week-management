@@ -11,10 +11,12 @@ import {
 
 import { CurrentUser, Roles } from '../decorators';
 import { AdminCreateDTO, UpdateUserDTO } from '../dto/users.dto';
+import { AttendanceViewModel } from '../view-models/attendance.view-model';
 import { UserViewModel } from '../view-models/user.view-model';
 
 import {
   CreateUser,
+  GetUserAttendances,
   GetUserById,
   GetUsers,
   UpdateUser,
@@ -29,6 +31,7 @@ export class UsersController {
     private readonly getUsers: GetUsers,
     private readonly createUser: CreateUser,
     private readonly updateUser: UpdateUser,
+    private readonly getUserAttendances: GetUserAttendances,
   ) {}
 
   @Roles('admin')
@@ -111,6 +114,27 @@ export class UsersController {
 
     return {
       user: UserViewModel.toHTTP(user),
+    };
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Get('/:id/attendances')
+  async userAttendances(
+    @Param('id') id: string,
+    @CurrentUser() currentUser: AuthenticatedUser,
+  ) {
+    if (currentUser.id !== id && !currentUser.roles.includes('admin')) {
+      throw new UnauthorizedError();
+    }
+
+    const { attendances } = await this.getUserAttendances.execute({
+      userId: id,
+    });
+
+    return {
+      attendances: attendances.map((attendance) =>
+        AttendanceViewModel.toHTTP(attendance),
+      ),
     };
   }
 }

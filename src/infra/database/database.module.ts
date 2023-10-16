@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
+import { InMemoryAttendancesRepository } from '@test/repositories/in-memory.attendances.repository';
 import { InMemoryEventsRepository } from '@test/repositories/in-memory.events.repository';
 import { InMemoryRolesRepository } from '@test/repositories/in-memory.roles.repository';
 import { InMemoryThemesRepository } from '@test/repositories/in-memory.themes.repository';
 import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repository';
 
 import {
+  AttendancesRepository,
   EventsRepository,
   RolesRepository,
   ThemesRepository,
@@ -29,12 +31,17 @@ import {
       provide: EventsRepository,
       useClass: InMemoryEventsRepository,
     },
+    {
+      provide: AttendancesRepository,
+      useClass: InMemoryAttendancesRepository,
+    },
   ],
   exports: [
     RolesRepository,
     UsersRepository,
     ThemesRepository,
     EventsRepository,
+    AttendancesRepository,
   ],
 })
-export class DatabaseModule { }
+export class DatabaseModule {}

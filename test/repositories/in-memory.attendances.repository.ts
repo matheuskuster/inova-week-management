@@ -13,4 +13,8 @@ export class InMemoryAttendancesRepository
   public async findByEventId(eventId: string): Promise<Attendance[]> {
     return this.entities.filter((attendance) => attendance.eventId === eventId);
   }
+
+  public async findByUserId(userId: string): Promise<Attendance[]> {
+    return this.entities.filter((attendance) => attendance.userId === userId);
+  }
 }
