@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { User } from '../entities';
-import { RolesRepository, UsersRepository } from '../repositories';
-import { EncryptService } from '../services';
-
+import { User } from '@/application/entities';
+import { RolesRepository, UsersRepository } from '@/application/repositories';
+import { EncryptService } from '@/application/services';
 import { AlreadyExistsError } from '@/errors/already-exists.error';
 import { NotFoundError } from '@/errors/not-found.error';
 

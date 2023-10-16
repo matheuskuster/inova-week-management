@@ -1,7 +1,11 @@
-export * from './create-role';
-export * from './create-user';
-export * from './get-user-by-id';
-export * from './authenticate-user';
-export * from './generate-jwt';
-export * from './get-theme-by-id';
-export * from './get-event-by-id';
+export * from './users/create-user';
+export * from './users/get-user-by-id';
+export * from './users/authenticate-user';
+export * from './users/generate-jwt';
+
+export * from './themes/get-theme-by-id';
+export * from './events/get-event-by-id';
+
+export * from './roles/create-role';
+export * from './roles/get-roles';
+export * from './roles/update-role';
