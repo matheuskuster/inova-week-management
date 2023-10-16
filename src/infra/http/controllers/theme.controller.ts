@@ -18,7 +18,7 @@ export class ThemesController {
   constructor(
     private readonly getThemeById: GetThemeById,
     private readonly deleteTheme: DeleteTheme,
-  ) { }
+  ) {}
 
   @IsPublic()
   @HttpCode(HttpStatus.OK)
