@@ -18,3 +18,5 @@ export * from './attendances/get-event-attendances';
 export * from './roles/create-role';
 export * from './roles/get-roles';
 export * from './roles/update-role';
+
+export * from './review-criterias/get-review-criteria-by-id';

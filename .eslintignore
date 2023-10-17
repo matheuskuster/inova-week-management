@@ -1,3 +1,4 @@
 node_modules
 dist
 .husky
+vitest.config.ts

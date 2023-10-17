@@ -1,4 +1,4 @@
-import { ReviewsCriteriasRepository } from '../repositories';
+import { ReviewsCriteriasRepository } from '../../repositories';
 import { Injectable } from '@nestjs/common';
 
 import { NotFoundError } from '@/errors/not-found.error';

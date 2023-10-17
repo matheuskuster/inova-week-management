@@ -3,7 +3,7 @@ import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
 import { Roles } from '../decorators';
 import { ReviewCriteriaViewModel } from '../view-models/review-criteria.view-model';
 
-import { GetReviewCriteriaById } from '@/application/use-cases/get-review-criteria-by-id';
+import { GetReviewCriteriaById } from '@/application/use-cases/review-criterias/get-review-criteria-by-id';
 
 @Controller('review-criterias')
 export class ReviewCriteriasController {
