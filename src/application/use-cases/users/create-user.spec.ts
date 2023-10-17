@@ -16,7 +16,7 @@ const makeRequest = (
   password: 'any_password',
   phone: 'any_phone',
   registration: 'any_registration',
-  role: 'any_role',
+  roles: ['any_role'],
   ...overrides,
 });
 
@@ -39,7 +39,7 @@ describe('Create user', () => {
   });
 
   it('should throw if role does not exist', async () => {
-    const request = makeRequest({ role: 'invalid_role' });
+    const request = makeRequest({ roles: ['invalid_role'] });
 
     await expect(createUser.execute(request)).rejects.toThrow(NotFoundError);
   });
@@ -73,7 +73,7 @@ describe('Create user', () => {
 
   it('should create user', async () => {
     const role = makeRole({ name: 'admin' });
-    const request = makeRequest({ role: role.name });
+    const request = makeRequest({ roles: [role.name] });
 
     await rolesRepository.create(role);
 

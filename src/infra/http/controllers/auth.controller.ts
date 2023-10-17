@@ -14,8 +14,7 @@ import { LocalAuthGuard } from '../guards/local-auth.guard';
 import { UserViewModel } from '../view-models/user.view-model';
 
 import { User } from '@/application/entities';
-import { CreateUser } from '@/application/use-cases';
-import { GenerateJWT } from '@/application/use-cases/generate-jwt';
+import { CreateUser, GenerateJWT } from '@/application/use-cases';
 
 @Controller('auth')
 export class AuthController {
@@ -35,7 +34,7 @@ export class AuthController {
       password: body.password,
       phone: body.phone,
       registration: body.registration,
-      role: body.role,
+      roles: [body.role],
     });
 
     return {

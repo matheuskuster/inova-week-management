@@ -16,6 +16,11 @@ export class Role extends Entity<RoleProps> {
   public get description(): string | null {
     return this.props.description ?? null;
   }
+
+  public update(params: Partial<RoleProps>) {
+    this.props.name = params.name ?? this.props.name;
+    this.props.description = params.description ?? this.props.description;
+  }
 }
 
 export interface RoleProps {

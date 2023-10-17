@@ -1,7 +1,20 @@
-export * from './create-role';
-export * from './create-user';
-export * from './get-user-by-id';
-export * from './authenticate-user';
-export * from './generate-jwt';
-export * from './get-theme-by-id';
-export * from './get-review-criteria-by-id';
+export * from './users/create-user';
+export * from './users/get-user-by-id';
+export * from './users/authenticate-user';
+export * from './users/generate-jwt';
+export * from './users/get-users';
+export * from './users/update-user';
+
+export * from './themes/get-theme-by-id';
+export * from './themes/delete-theme';
+
+export * from './events/delete-event';
+export * from './events/get-event-by-id';
+export * from './events/update-event';
+
+export * from './attendances/create-attendance';
+export * from './attendances/get-event-attendances';
+
+export * from './roles/create-role';
+export * from './roles/get-roles';
+export * from './roles/update-role';

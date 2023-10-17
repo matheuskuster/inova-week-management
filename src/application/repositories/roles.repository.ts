@@ -9,4 +9,5 @@ export abstract class RolesRepository implements RepositoryInterface<Role> {
   public abstract findAll(): Promise<Role[]>;
 
   public abstract findByName(name: string): Promise<Role | null>;
+  public abstract findManyByNames(names: string[]): Promise<Role[]>;
 }
