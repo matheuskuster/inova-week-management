@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
+import { Controller, Delete, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
 
 import { Roles } from '../decorators';
 import { ReviewCriteriaViewModel } from '../view-models/review-criteria.view-model';
@@ -13,6 +13,17 @@ export class ReviewCriteriasController {
   @HttpCode(HttpStatus.OK)
   @Get('/:id')
   async findById(@Param('id') id: string) {
+    const { reviewCriteria } = await this.getReviewCriteriaById.execute({ id });
+
+    return {
+      reviewCriteria: ReviewCriteriaViewModel.toHTTP(reviewCriteria),
+    };
+  }
+
+  @Roles('admin','professor','student')
+  @HttpCode(HttpStatus.OK)
+  @Delete('/:id')
+  async delete(@Param('id') id: string) {
     const { reviewCriteria } = await this.getReviewCriteriaById.execute({ id });
 
     return {

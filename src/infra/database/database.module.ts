@@ -31,12 +31,17 @@ import {
       provide: EventsRepository,
       useClass: InMemoryEventsRepository,
     },
+    {
+      provide: ReviewsCriteriasRepository,
+      useClass: InMemoryReviewCriteriasRepository,
+    },
   ],
   exports: [
     RolesRepository,
     UsersRepository,
     ThemesRepository,
     EventsRepository,
+    ReviewsCriteriasRepository,
   ],
 })
 export class DatabaseModule { }
