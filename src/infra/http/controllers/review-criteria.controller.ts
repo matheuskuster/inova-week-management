@@ -20,7 +20,7 @@ export class ReviewCriteriasController {
     };
   }
 
-  @Roles('admin','professor','student')
+  @Roles('admin')
   @HttpCode(HttpStatus.OK)
   @Delete('/:id')
   async delete(@Param('id') id: string) {
