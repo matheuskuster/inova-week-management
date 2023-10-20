@@ -5,3 +5,4 @@ export * from './events.controller';
 export * from './users.controller';
 export * from './review-criteria.controller';
 export * from './invites.controller';
+export * from './inovas.controller';

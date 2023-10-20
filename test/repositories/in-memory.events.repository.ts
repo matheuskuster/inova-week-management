@@ -9,4 +9,8 @@ export class InMemoryEventsRepository
   public get events(): Event[] {
     return this.entities;
   }
+
+  public async findManyByInovaId(inovaId: string): Promise<Event[]> {
+    return this.entities.filter((event) => event.inovaId === inovaId);
+  }
 }

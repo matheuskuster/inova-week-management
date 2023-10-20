@@ -9,4 +9,8 @@ export class InMemoryThemesRepository
   public get themes(): Theme[] {
     return this.entities;
   }
+
+  public async findManyByInovaId(inovaId: string): Promise<Theme[]> {
+    return this.entities.filter((theme) => theme.inovaId === inovaId);
+  }
 }

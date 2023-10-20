@@ -8,10 +8,15 @@ export * from './users/update-user';
 export * from './themes/get-theme-by-id';
 export * from './themes/delete-theme';
 export * from './themes/update-themes';
+export * from './themes/fetch-themes-from-inova';
+export * from './themes/create-theme';
+export * from './themes/create-themes-from-previous-inova';
 
 export * from './events/delete-event';
 export * from './events/get-event-by-id';
 export * from './events/update-event';
+export * from './events/create-event';
+export * from './events/fetch-events-from-inova';
 
 export * from './attendances/create-attendance';
 export * from './attendances/get-event-attendances';
@@ -30,3 +35,15 @@ export * from './review-criterias/delete-review-criteria';
 export * from './invites/delete-invite';
 export * from './invites/get-invites';
 export * from './invites/get-user-invites';
+export * from './review-criterias/create-review-criteria';
+export * from './review-criterias/create-review-criterias-from-previous-inova';
+export * from './review-criterias/fetch-review-criterias-from-inova';
+
+export * from './inovas/create-inova';
+export * from './inovas/get-inova-by-id';
+export * from './inovas/update-inova';
+export * from './inovas/delete-inova';
+export * from './inovas/get-inovas';
+
+export * from './projects/create-project';
+export * from './projects/fetch-projects-from-inova';

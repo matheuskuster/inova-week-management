@@ -1,11 +1,12 @@
 import { Entity } from '@/types/entities';
 import { Replace } from '@/types/ts-helpers';
+import { UniqueEntityId } from '@/types/value-objects';
 
 export class Project extends Entity<MainProjectProps> {
   protected readonly props: ProjectProps;
 
-  constructor(props: MainProjectProps) {
-    super(props);
+  constructor(props: MainProjectProps, id?: UniqueEntityId) {
+    super(props, id);
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -66,6 +67,10 @@ export class Project extends Entity<MainProjectProps> {
 
   public get presentationDay(): Date | null {
     return this.props.presentationDay ?? null;
+  }
+
+  public get reviewedAt(): Date | null {
+    return this.props.reviewedAt ?? null;
   }
 
   public get createdAt(): Date {

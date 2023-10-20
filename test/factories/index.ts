@@ -4,3 +4,6 @@ export * from './attendance.factory';
 export * from './event.factory';
 export * from './theme.factory';
 export * from './review-criteria.factory';
+export * from './inova.factory';
+export * from './invite.factory';
+export * from './project.factory';

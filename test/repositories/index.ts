@@ -5,3 +5,5 @@ export * from './in-memory.review-criterias.repository';
 export * from './in-memory.roles.repository';
 export * from './in-memory.themes.repository';
 export * from './in-memory.users.repository';
+export * from './in-memory.projects.repository';
+export * from './in-memory.invites.repository';

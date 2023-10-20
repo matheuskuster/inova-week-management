@@ -4,4 +4,6 @@ export * from './themes.repository';
 export * from './events.repository';
 export * from './attendances.repository';
 export * from './review-criterias.repository';
+export * from './inovas.repository';
+export * from './projects.repository';
 export * from './invites.repository';

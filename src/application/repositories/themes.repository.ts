@@ -7,4 +7,6 @@ export abstract class ThemesRepository implements RepositoryInterface<Theme> {
   public abstract delete(id: string): Promise<void>;
   public abstract findById(id: string): Promise<Theme | null>;
   public abstract findAll(): Promise<Theme[]>;
+
+  public abstract findManyByInovaId(inovaId: string): Promise<Theme[]>;
 }
