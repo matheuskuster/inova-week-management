@@ -9,6 +9,12 @@ export class Theme extends Entity<ThemeProps> {
     this.props = props;
   }
 
+  public update(params: Partial<UpdateThemeDTO>): void {
+    this.props.name = params.name ?? this.props.name;
+    this.props.description = params.description ?? this.props.description;
+    this.props.inovaId = params.inovaId ?? this.props.inovaId;
+  }
+
   public get name(): string {
     return this.props.name;
   }
@@ -25,5 +31,11 @@ export class Theme extends Entity<ThemeProps> {
 export interface ThemeProps {
   name: string;
   description?: string;
+  inovaId: string;
+}
+
+export interface UpdateThemeDTO {
+  name: string;
+  description: string;
   inovaId: string;
 }

@@ -6,6 +6,8 @@ export * from './users/get-users';
 export * from './users/update-user';
 
 export * from './themes/get-theme-by-id';
+export * from './themes/delete-theme';
+export * from './themes/update-themes';
 
 export * from './events/delete-event';
 export * from './events/get-event-by-id';
@@ -20,3 +22,7 @@ export * from './attendances/delete-attendance';
 export * from './roles/create-role';
 export * from './roles/get-roles';
 export * from './roles/update-role';
+
+export * from './review-criterias/get-review-criteria-by-id';
+export * from './review-criterias/updade-review-criteria';
+export * from './review-criterias/delete-review-criteria';
