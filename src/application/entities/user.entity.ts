@@ -56,6 +56,14 @@ export class User extends Entity<MainUserProps> {
   public get roles(): Role[] {
     return this.props.roles;
   }
+
+  public get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface UserProps {
