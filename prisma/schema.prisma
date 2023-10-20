@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+model Role {
+  id String @id @default(uuid())
+
+  name        String  @unique
+  description String?
+
+  users User[]
+
+  @@map("roles")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  name         String
+  phone        String   @unique
+  registration String   @unique
+  email        String   @unique
+  password     String
+  birthDate    DateTime @map("birth_date")
+
+  roles       Role[]
+  attendances Attendance[]
+  reviews     Review[]
+  projects    Project[]
+  invites     Invite[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("users")
+}
+
+model Inova {
+  id String @id @default(uuid())
+
+  name        String   @unique
+  description String?
+  from        DateTime @db.Date()
+  to          DateTime @db.Date()
+  year        Int
+
+  themes          Theme[]
+  events          Event[]
+  reviewCriterias ReviewCriteria[]
+  projects        Project[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("inovas")
+}
+
+model Theme {
+  id String @id @default(uuid())
+
+  name        String  @unique
+  description String?
+
+  inovaId String @map("inova_id")
+  inova   Inova  @relation(fields: [inovaId], references: [id])
+
+  projects Project[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@unique([name, inovaId])
+  @@map("themes")
+}
+
+model Event {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+  type        String
+  date        DateTime @db.Date()
+
+  inovaId String @map("inova_id")
+  inova   Inova  @relation(fields: [inovaId], references: [id])
+
+  attendances Attendance[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@unique([name, inovaId])
+  @@map("events")
+}
+
+model Attendance {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  eventId String @map("event_id")
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@unique([userId, eventId])
+  @@map("attendances")
+}
+
+model ReviewCriteria {
+  id       String @id @default(uuid())
+  question String
+
+  inovaId String @map("inova_id")
+  inova   Inova  @relation(fields: [inovaId], references: [id])
+
+  answers ReviewAnswer[]
+
+  @@unique([question, inovaId])
+  @@map("review_criterias")
+}
+
+model ReviewAnswer {
+  id String @id @default(uuid())
+
+  reviewCriteriaId String         @map("review_criteria_id")
+  reviewCriteria   ReviewCriteria @relation(fields: [reviewCriteriaId], references: [id])
+
+  reviewId String @map("review_id")
+  review   Review @relation(fields: [reviewId], references: [id])
+
+  value Int
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("review_answers")
+}
+
+model Review {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  projectId String  @map("project_id")
+  project   Project @relation(fields: [projectId], references: [id])
+
+  answers ReviewAnswer[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("reviews")
+}
+
+model Project {
+  id String @id @default(uuid())
+
+  name            String
+  description     String
+  approved        Boolean   @default(false)
+  presentationDay DateTime? @map("presentation_day") @db.Date()
+  reviewedAt      DateTime? @map("reviewed_at") @db.Date()
+  stand           Int?
+
+  leaderUserId String @map("leader_user_id")
+  leader       User   @relation(fields: [leaderUserId], references: [id])
+
+  themeId String @map("theme_id")
+  theme   Theme  @relation(fields: [themeId], references: [id])
+
+  inovaId String @map("inova_id")
+  inova   Inova  @relation(fields: [inovaId], references: [id])
+
+  invites Invite[]
+  reviews Review[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@unique([name, inovaId])
+  @@map("projects")
+}
+
+model Invite {
+  id String @id @default(uuid())
+
+  acceptedAt DateTime? @map("accepted_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  projectId String  @map("project_id")
+  project   Project @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@unique([userId, projectId])
+  @@map("invites")
+}

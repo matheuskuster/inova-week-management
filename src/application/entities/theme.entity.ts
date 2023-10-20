@@ -1,12 +1,17 @@
 import { Entity } from '@/types/entities';
+import { Replace } from '@/types/ts-helpers';
 import { UniqueEntityId } from '@/types/value-objects';
 
-export class Theme extends Entity<ThemeProps> {
+export class Theme extends Entity<MainThemeProps> {
   protected readonly props: ThemeProps;
 
-  constructor(props: ThemeProps, id?: UniqueEntityId) {
+  constructor(props: MainThemeProps, id?: UniqueEntityId) {
     super(props, id);
-    this.props = props;
+    this.props = {
+      ...props,
+      createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
+    };
   }
 
   public update(params: Partial<UpdateThemeDTO>): void {
@@ -26,13 +31,31 @@ export class Theme extends Entity<ThemeProps> {
   public get inovaId(): string {
     return this.props.inovaId;
   }
+
+  public get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface ThemeProps {
   name: string;
   description?: string;
   inovaId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
+
+type MainThemeProps = Replace<
+  ThemeProps,
+  {
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
+>;
 
 export interface UpdateThemeDTO {
   name: string;

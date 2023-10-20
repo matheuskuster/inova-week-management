@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
-import { InMemoryAttendancesRepository } from '@test/repositories/in-memory.attendances.repository';
-import { InMemoryEventsRepository } from '@test/repositories/in-memory.events.repository';
-import { InMemoryInvitesRepository } from '@test/repositories/in-memory.invites.repository';
-import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias';
-import { InMemoryRolesRepository } from '@test/repositories/in-memory.roles.repository';
-import { InMemoryThemesRepository } from '@test/repositories/in-memory.themes.repository';
-import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repository';
+
+import {
+  PrismaAttendancesRepository,
+  PrismaEventsRepository,
+  PrismaReviewCriteriasRepository,
+  PrismaRolesRepository,
+  PrismaService,
+  PrismaThemesRepository,
+  PrismaUsersRepository,
+  PrismaInvitesRepository,
+} from './prisma';
 
 import {
   AttendancesRepository,
@@ -19,33 +23,34 @@ import {
 
 @Module({
   providers: [
+    PrismaService,
     {
       provide: RolesRepository,
-      useClass: InMemoryRolesRepository,
+      useClass: PrismaRolesRepository,
     },
     {
       provide: UsersRepository,
-      useClass: InMemoryUsersRepository,
+      useClass: PrismaUsersRepository,
     },
     {
       provide: ThemesRepository,
-      useClass: InMemoryThemesRepository,
+      useClass: PrismaThemesRepository,
     },
     {
       provide: EventsRepository,
-      useClass: InMemoryEventsRepository,
+      useClass: PrismaEventsRepository,
     },
     {
       provide: AttendancesRepository,
-      useClass: InMemoryAttendancesRepository,
+      useClass: PrismaAttendancesRepository,
     },
     {
       provide: ReviewsCriteriasRepository,
-      useClass: InMemoryReviewCriteriasRepository,
+      useClass: PrismaReviewCriteriasRepository,
     },
     {
       provide: InvitesRepository,
-      useClass: InMemoryInvitesRepository,
+      useClass: PrismaInvitesRepository,
     },
   ],
   exports: [
@@ -56,6 +61,7 @@ import {
     AttendancesRepository,
     ReviewsCriteriasRepository,
     InvitesRepository,
+    PrismaService,
   ],
 })
 export class DatabaseModule {}

@@ -10,6 +10,7 @@ export class Attendance extends Entity<MainAttendanceProps> {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -24,17 +25,23 @@ export class Attendance extends Entity<MainAttendanceProps> {
   public get createdAt(): Date {
     return this.props.createdAt;
   }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface AttendanceProps {
   userId: string;
   eventId: string;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 type MainAttendanceProps = Replace<
   AttendanceProps,
   {
     createdAt?: Date;
+    updatedAt?: Date;
   }
 >;

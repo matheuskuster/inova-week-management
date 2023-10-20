@@ -16,6 +16,10 @@ export class ReviewCriteria extends Entity<ReviewCriteriaProps> {
   public get question(): string {
     return this.props.question;
   }
+
+  public get inovaId(): string {
+    return this.props.inovaId;
+  }
 }
 
 export interface ReviewCriteriaProps {

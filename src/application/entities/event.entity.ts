@@ -3,7 +3,7 @@ import { Replace } from '@/types/ts-helpers';
 import { UniqueEntityId } from '@/types/value-objects';
 
 export class Event extends Entity<MainEventProps> {
-  protected readonly props: MainEventProps;
+  protected readonly props: EventProps;
 
   constructor(props: MainEventProps, id?: UniqueEntityId) {
     super(props, id);
@@ -43,6 +43,14 @@ export class Event extends Entity<MainEventProps> {
 
   public get inovaId(): string {
     return this.props.inovaId;
+  }
+
+  public get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
   }
 }
 
