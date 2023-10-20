@@ -37,4 +37,14 @@ export class PrismaInvitesRepository implements InvitesRepository {
     const invites = await this.prisma.invite.findMany();
     return invites.map(PrismaInviteMapper.toDomain);
   }
+
+  public async findByUserId(userId: string): Promise<Invite[]> {
+    const invites = await this.prisma.invite.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    return invites.map(PrismaInviteMapper.toDomain);
+  }
 }

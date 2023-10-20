@@ -9,6 +9,7 @@ export function makeInvite(overrides?: Override<InviteProps>) {
       projectId: '123456',
       acceptedAt: new Date('1990-01-02'),
       createdAt: new Date('1990-01-01'),
+      ...overrides,
     },
     new UniqueEntityId(overrides?.id),
   );
