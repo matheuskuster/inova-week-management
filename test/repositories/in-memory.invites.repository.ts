@@ -9,4 +9,8 @@ export class InMemoryInvitesRepository
   public get invites(): Invite[] {
     return this.entities;
   }
+
+  public async findByUserId(userId: string): Promise<Invite[]> {
+    return this.invites.filter((invite) => invite.userId === userId);
+  }
 }
