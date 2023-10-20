@@ -1,5 +1,5 @@
 import { makeReviewCriteria } from '@test/factories/review-criteria.factory';
-import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias';
+import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias.repository';
 
 import { GetReviewCriteriaById } from './get-review-criteria-by-id';
 
@@ -15,16 +15,18 @@ describe('Get Review Criteria By Id', () => {
   });
 
   it('should throw an error if review criteria does not exist', async () => {
-    await expect(getReviewCriteriaById.execute({ id: 'invalid-id' })).rejects.toThrow(
-      NotFoundError,
-    );
+    await expect(
+      getReviewCriteriaById.execute({ id: 'invalid-id' }),
+    ).rejects.toThrow(NotFoundError);
   });
 
   it('should return the review criteria if it exists', async () => {
     const reviewCriteria = makeReviewCriteria();
     await reviewCriteriaRepository.create(reviewCriteria);
 
-    const response = await getReviewCriteriaById.execute({ id: reviewCriteria.id });
+    const response = await getReviewCriteriaById.execute({
+      id: reviewCriteria.id,
+    });
     expect(response.reviewCriteria.id).toBe(reviewCriteria.id);
   });
 });
