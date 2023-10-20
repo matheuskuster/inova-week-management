@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { InMemoryInvitesRepository } from '@test/repositories/in-memory.invites.repository';
 
 import {
   PrismaAttendancesRepository,
@@ -9,6 +8,7 @@ import {
   PrismaService,
   PrismaThemesRepository,
   PrismaUsersRepository,
+  PrismaInvitesRepository,
 } from './prisma';
 
 import {
@@ -50,7 +50,7 @@ import {
     },
     {
       provide: InvitesRepository,
-      useClass: InMemoryInvitesRepository,
+      useClass: PrismaInvitesRepository,
     },
   ],
   exports: [
