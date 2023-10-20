@@ -6,7 +6,7 @@ export class InMemoryInvitesRepository
   extends InMemoryRepository<Invite>
   implements InviteRepository
 {
-  public get invite(): Invite[] {
+  public get invites(): Invite[] {
     return this.entities;
   }
 }
