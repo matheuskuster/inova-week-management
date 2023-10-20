@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { InMemoryAttendancesRepository } from '@test/repositories/in-memory.attendances.repository';
 import { InMemoryEventsRepository } from '@test/repositories/in-memory.events.repository';
+import { InMemoryInvitesRepository } from '@test/repositories/in-memory.invites.repository';
 import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias';
 import { InMemoryRolesRepository } from '@test/repositories/in-memory.roles.repository';
 import { InMemoryThemesRepository } from '@test/repositories/in-memory.themes.repository';
@@ -14,6 +15,7 @@ import {
   UsersRepository,
   ReviewsCriteriasRepository,
 } from '@/application/repositories';
+import { InviteRepository } from '@/application/repositories/invitesRepository';
 
 @Module({
   providers: [
@@ -40,6 +42,10 @@ import {
     {
       provide: ReviewsCriteriasRepository,
       useClass: InMemoryReviewCriteriasRepository,
+    },
+    {
+      provide: InviteRepository,
+      useClass: InMemoryInvitesRepository,
     },
   ],
   exports: [
