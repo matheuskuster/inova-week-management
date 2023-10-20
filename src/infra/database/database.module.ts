@@ -14,8 +14,8 @@ import {
   ThemesRepository,
   UsersRepository,
   ReviewsCriteriasRepository,
+  InvitesRepository,
 } from '@/application/repositories';
-import { InviteRepository } from '@/application/repositories/invitesRepository';
 
 @Module({
   providers: [
@@ -44,7 +44,7 @@ import { InviteRepository } from '@/application/repositories/invitesRepository';
       useClass: InMemoryReviewCriteriasRepository,
     },
     {
-      provide: InviteRepository,
+      provide: InvitesRepository,
       useClass: InMemoryInvitesRepository,
     },
   ],
@@ -55,6 +55,7 @@ import { InviteRepository } from '@/application/repositories/invitesRepository';
     EventsRepository,
     AttendancesRepository,
     ReviewsCriteriasRepository,
+    InvitesRepository,
   ],
 })
 export class DatabaseModule {}

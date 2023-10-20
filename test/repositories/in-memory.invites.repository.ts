@@ -1,10 +1,10 @@
 import { Invite } from '@/application/entities';
-import { InviteRepository } from '@/application/repositories/invitesRepository';
+import { InvitesRepository } from '@/application/repositories';
 import { InMemoryRepository } from '@/types/repositories/in-memory.repository';
 
 export class InMemoryInvitesRepository
   extends InMemoryRepository<Invite>
-  implements InviteRepository
+  implements InvitesRepository
 {
   public get invites(): Invite[] {
     return this.entities;
