@@ -154,6 +154,9 @@ model Review {
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
 
+  projectId String  @map("project_id")
+  project   Project @relation(fields: [projectId], references: [id])
+
   answers ReviewAnswer[]
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -182,6 +185,7 @@ model Project {
   inova   Inova  @relation(fields: [inovaId], references: [id])
 
   invites Invite[]
+  reviews Review[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
