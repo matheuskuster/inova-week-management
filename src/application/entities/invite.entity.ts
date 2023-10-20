@@ -10,6 +10,7 @@ export class Invite extends Entity<MainInviteProps> {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -36,6 +37,10 @@ export class Invite extends Entity<MainInviteProps> {
   public get createdAt(): Date {
     return this.props.createdAt;
   }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface InviteProps {
@@ -43,11 +48,13 @@ export interface InviteProps {
   projectId: string;
   acceptedAt?: Date;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 type MainInviteProps = Replace<
   InviteProps,
   {
     createdAt?: Date;
+    updatedAt?: Date;
   }
 >;
