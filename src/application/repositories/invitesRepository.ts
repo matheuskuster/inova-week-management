@@ -1,7 +1,7 @@
 import { Invite } from '@/application/entities';
 import { RepositoryInterface } from '@/types/repositories/repository-contracts';
 
-export abstract class InviteRepository implements RepositoryInterface<Invite> {
+export abstract class InvitesRepository implements RepositoryInterface<Invite> {
   public abstract create(entity: Invite): Promise<void>;
   public abstract save(entity: Invite): Promise<void>;
   public abstract delete(id: string): Promise<void>;
