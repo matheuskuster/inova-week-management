@@ -9,6 +9,8 @@ import {
   PrismaThemesRepository,
   PrismaUsersRepository,
   PrismaInvitesRepository,
+  PrismaInovasRepository,
+  PrismaProjectsRepository,
 } from './prisma';
 
 import {
@@ -19,6 +21,8 @@ import {
   UsersRepository,
   ReviewsCriteriasRepository,
   InvitesRepository,
+  InovasRepository,
+  ProjectsRepository,
 } from '@/application/repositories';
 
 @Module({
@@ -52,6 +56,14 @@ import {
       provide: InvitesRepository,
       useClass: PrismaInvitesRepository,
     },
+    {
+      provide: InovasRepository,
+      useClass: PrismaInovasRepository,
+    },
+    {
+      provide: ProjectsRepository,
+      useClass: PrismaProjectsRepository,
+    },
   ],
   exports: [
     RolesRepository,
@@ -61,6 +73,8 @@ import {
     AttendancesRepository,
     ReviewsCriteriasRepository,
     InvitesRepository,
+    InovasRepository,
+    ProjectsRepository,
     PrismaService,
   ],
 })

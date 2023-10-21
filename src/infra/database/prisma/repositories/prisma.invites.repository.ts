@@ -9,7 +9,6 @@ import { InvitesRepository } from '@/application/repositories';
 @Injectable()
 export class PrismaInvitesRepository implements InvitesRepository {
   constructor(private readonly prisma: PrismaService) {}
-
   public async create(invite: Invite): Promise<void> {
     const raw = PrismaInviteMapper.toPrisma(invite);
     await this.prisma.invite.create({ data: raw });
@@ -46,5 +45,15 @@ export class PrismaInvitesRepository implements InvitesRepository {
     });
 
     return invites.map(PrismaInviteMapper.toDomain);
+  }
+
+  public async findManyByProjectId(projectId: string): Promise<Invite[]> {
+    const invites = this.prisma.invite.findMany({
+      where: {
+        projectId,
+      },
+    });
+
+    return invites.then((invites) => invites.map(PrismaInviteMapper.toDomain));
   }
 }

@@ -46,4 +46,16 @@ export class PrismaReviewCriteriasRepository
     const themes = await this.prisma.reviewCriteria.findMany();
     return themes.map((theme) => PrismaReviewCriteriaMapper.toDomain(theme));
   }
+
+  public async findManyByInovaId(inovaId: string): Promise<ReviewCriteria[]> {
+    const reviewCriterias = this.prisma.reviewCriteria.findMany({
+      where: {
+        inovaId,
+      },
+    });
+
+    return reviewCriterias.then((reviewCriterias) =>
+      reviewCriterias.map(PrismaReviewCriteriaMapper.toDomain),
+    );
+  }
 }
