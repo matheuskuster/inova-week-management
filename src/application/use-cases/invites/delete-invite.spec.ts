@@ -1,5 +1,9 @@
+import { makeProject } from '@test/factories';
 import { makeInvite } from '@test/factories/invite.factory';
-import { InMemoryInvitesRepository } from '@test/repositories/in-memory.invites.repository';
+import {
+  InMemoryProjectsRepository,
+  InMemoryInvitesRepository,
+} from '@test/repositories';
 
 import { DeleteInvite } from './delete-invite';
 
@@ -9,10 +13,12 @@ import { UnauthorizedError } from '@/errors/unauthorized-error';
 describe('Delete Invite', () => {
   let invitesRepository: InMemoryInvitesRepository;
   let deleteInvite: DeleteInvite;
+  let projectsRepository: InMemoryProjectsRepository;
 
   beforeEach(() => {
     invitesRepository = new InMemoryInvitesRepository();
-    deleteInvite = new DeleteInvite(invitesRepository);
+    projectsRepository = new InMemoryProjectsRepository();
+    deleteInvite = new DeleteInvite(invitesRepository, projectsRepository);
   });
 
   it('should throw if invite not found', async () => {
@@ -21,20 +27,32 @@ describe('Delete Invite', () => {
     ).rejects.toThrow(NotFoundError);
   });
 
-  it('should throw if invite does not belong to the user', async () => {
-    const invite = makeInvite({ userId: '123' });
+  it('should throw if invite does not belong to the leader', async () => {
+    const project = makeProject({ leaderUserId: '321' });
+    const invite = makeInvite({
+      userId: 'any-id',
+      projectId: project.id,
+    });
+
+    await projectsRepository.create(project);
     await invitesRepository.create(invite);
 
     await expect(
-      deleteInvite.execute({ id: invite.id, userId: '321' }),
+      deleteInvite.execute({ id: invite.id, userId: '123' }),
     ).rejects.toThrow(UnauthorizedError);
   });
 
   it('should delete given invite', async () => {
-    const invite = makeInvite({ userId: '1' });
+    const project = makeProject();
+    const invite = makeInvite({
+      userId: project.leaderUserId,
+      projectId: project.id,
+    });
+
+    await projectsRepository.create(project);
     await invitesRepository.create(invite);
 
-    await deleteInvite.execute({ id: invite.id, userId: '1' });
+    await deleteInvite.execute({ id: invite.id, userId: project.leaderUserId });
 
     const invites = await invitesRepository.findAll();
     expect(invites).toEqual([]);
