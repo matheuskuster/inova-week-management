@@ -9,4 +9,5 @@ export abstract class InvitesRepository implements RepositoryInterface<Invite> {
   public abstract findAll(): Promise<Invite[]>;
 
   public abstract findByUserId(userId: string): Promise<Invite[]>;
+  public abstract findManyByProjectId(projectId: string): Promise<Invite[]>;
 }

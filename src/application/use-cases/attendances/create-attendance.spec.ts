@@ -1,7 +1,9 @@
 import { makeEvent, makeUser } from '@test/factories';
-import { InMemoryAttendancesRepository } from '@test/repositories/in-memory.attendances.repository';
-import { InMemoryEventsRepository } from '@test/repositories/in-memory.events.repository';
-import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repository';
+import {
+  InMemoryAttendancesRepository,
+  InMemoryEventsRepository,
+  InMemoryUsersRepository,
+} from '@test/repositories';
 
 import { CreateAttendance } from './create-attendance';
 

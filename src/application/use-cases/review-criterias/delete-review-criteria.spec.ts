@@ -1,5 +1,5 @@
 import { makeReviewCriteria } from '@test/factories';
-import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias';
+import { InMemoryReviewCriteriasRepository } from '@test/repositories/in-memory.review-criterias.repository';
 
 import { DeleteReviewCriteria } from './delete-review-criteria';
 
@@ -15,16 +15,18 @@ describe('Delete Review Criteria', () => {
   });
 
   it('should throw an error if review criteria does not exist', async () => {
-    await expect(deleteReviewCriteria.execute({ id: 'invalid-id' })).rejects.toThrow(
-      NotFoundError,
-    );
+    await expect(
+      deleteReviewCriteria.execute({ id: 'invalid-id' }),
+    ).rejects.toThrow(NotFoundError);
   });
 
   it('should delete the review criteria if it exists', async () => {
     const reviewCriteria = makeReviewCriteria();
     await reviewCriteriaRepository.create(reviewCriteria);
 
-    expect(await reviewCriteriaRepository.findById(reviewCriteria.id)).toEqual(reviewCriteria);
+    expect(await reviewCriteriaRepository.findById(reviewCriteria.id)).toEqual(
+      reviewCriteria,
+    );
 
     await deleteReviewCriteria.execute({ id: reviewCriteria.id });
 
@@ -32,5 +34,3 @@ describe('Delete Review Criteria', () => {
     expect(reviewsCriterias).toEqual([]);
   });
 });
-
-

@@ -1,8 +1,9 @@
 import { makeUser } from '@test/factories/user.factory';
 import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repository';
 
-import { NotFoundError } from '@/errors/not-found.error';
 import { GetUserById } from './get-user-by-id';
+
+import { NotFoundError } from '@/errors/not-found.error';
 
 describe('Get User By Id', () => {
   let usersRepository: InMemoryUsersRepository;

@@ -1,6 +1,8 @@
 import { makeRole, makeUser } from '@test/factories';
-import { InMemoryRolesRepository } from '@test/repositories/in-memory.roles.repository';
-import { InMemoryUsersRepository } from '@test/repositories/in-memory.users.repository';
+import {
+  InMemoryRolesRepository,
+  InMemoryUsersRepository,
+} from '@test/repositories';
 
 import { CreateRole } from './create-role';
 

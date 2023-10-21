@@ -44,4 +44,14 @@ export class PrismaThemesRepository implements ThemesRepository {
     const themes = await this.prisma.theme.findMany();
     return themes.map((theme) => PrismaThemeMapper.toDomain(theme));
   }
+
+  public async findManyByInovaId(inovaId: string): Promise<Theme[]> {
+    const themes = this.prisma.theme.findMany({
+      where: {
+        inovaId,
+      },
+    });
+
+    return themes.then((themes) => themes.map(PrismaThemeMapper.toDomain));
+  }
 }

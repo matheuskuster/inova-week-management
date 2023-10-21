@@ -45,6 +45,14 @@ export class Inova extends Entity<MainInovaProps> {
   public get year(): number {
     return this.props.year;
   }
+
+  public get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface InovaProps {

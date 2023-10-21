@@ -9,7 +9,6 @@ import { EventsRepository } from '@/application/repositories';
 @Injectable()
 export class PrismaEventsRepository implements EventsRepository {
   constructor(private readonly prisma: PrismaService) {}
-
   async create(event: Event): Promise<void> {
     const raw = PrismaEventMapper.toPrisma(event);
     await this.prisma.event.create({ data: raw });
@@ -43,5 +42,15 @@ export class PrismaEventsRepository implements EventsRepository {
   async findAll(): Promise<Event[]> {
     const events = await this.prisma.event.findMany();
     return events.map((event) => PrismaEventMapper.toDomain(event));
+  }
+
+  public async findManyByInovaId(inovaId: string): Promise<Event[]> {
+    const events = this.prisma.event.findMany({
+      where: {
+        inovaId,
+      },
+    });
+
+    return events.then((events) => events.map(PrismaEventMapper.toDomain));
   }
 }

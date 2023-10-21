@@ -6,15 +6,15 @@ interface DeleteThemeRequest {
 }
 
 export class DeleteTheme {
-  constructor(private readonly themeRepository: ThemesRepository) { }
+  constructor(private readonly themesRepository: ThemesRepository) {}
 
   async execute({ id }: DeleteThemeRequest) {
-    const theme = await this.themeRepository.findById(id);
+    const theme = await this.themesRepository.findById(id);
 
     if (!theme) {
       throw new NotFoundError(`Theme with id ${id} not found`);
     }
 
-    await this.themeRepository.delete(id);
+    await this.themesRepository.delete(id);
   }
 }
