@@ -7,3 +7,5 @@ export * from './review-criterias.repository';
 export * from './inovas.repository';
 export * from './projects.repository';
 export * from './invites.repository';
+export * from './reviews.repository';
+export * from './review-answers.repository';

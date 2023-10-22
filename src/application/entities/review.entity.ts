@@ -10,6 +10,7 @@ export class Review extends Entity<MainReviewProps> {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -24,17 +25,23 @@ export class Review extends Entity<MainReviewProps> {
   public get createdAt(): Date {
     return this.props.createdAt;
   }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface ReviewProps {
   userId: string;
   projectId: string;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 type MainReviewProps = Replace<
   ReviewProps,
   {
     createdAt?: Date;
+    updatedAt?: Date;
   }
 >;

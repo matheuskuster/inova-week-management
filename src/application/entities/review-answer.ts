@@ -1,14 +1,16 @@
 import { Entity } from '@/types/entities';
 import { Replace } from '@/types/ts-helpers';
+import { UniqueEntityId } from '@/types/value-objects';
 
 export class ReviewAnswer extends Entity<MainReviewAnswerProps> {
   protected readonly props: ReviewAnswerProps;
 
-  constructor(props: MainReviewAnswerProps) {
+  constructor(props: MainReviewAnswerProps, id?: UniqueEntityId) {
     super(props);
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -31,6 +33,10 @@ export class ReviewAnswer extends Entity<MainReviewAnswerProps> {
   public get createdAt(): Date {
     return this.props.createdAt;
   }
+
+  public get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
 
 export interface ReviewAnswerProps {
@@ -38,11 +44,13 @@ export interface ReviewAnswerProps {
   criteriaId: string;
   value: number;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 type MainReviewAnswerProps = Replace<
   ReviewAnswerProps,
   {
     createdAt?: Date;
+    updatedAt?: Date;
   }
 >;
