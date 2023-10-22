@@ -7,3 +7,4 @@ export * from './in-memory.themes.repository';
 export * from './in-memory.users.repository';
 export * from './in-memory.projects.repository';
 export * from './in-memory.invites.repository';
+export * from './in-memory.reviews.repository';

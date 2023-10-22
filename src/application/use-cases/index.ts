@@ -35,6 +35,8 @@ export * from './review-criterias/delete-review-criteria';
 export * from './invites/delete-invite';
 export * from './invites/get-invites';
 export * from './invites/get-user-invites';
+export * from './invites/create-invite';
+
 export * from './review-criterias/create-review-criteria';
 export * from './review-criterias/create-review-criterias-from-previous-inova';
 export * from './review-criterias/fetch-review-criterias-from-inova';
@@ -47,3 +49,8 @@ export * from './inovas/get-inovas';
 
 export * from './projects/create-project';
 export * from './projects/fetch-projects-from-inova';
+export * from './projects/get-project-by-id';
+export * from './projects/update-project';
+export * from './projects/update-project-presentation';
+export * from './projects/approval-project';
+export * from './projects/delete-project';
