@@ -33,7 +33,6 @@ export * from './review-criterias/updade-review-criteria';
 export * from './review-criterias/delete-review-criteria';
 
 export * from './invites/delete-invite';
-export * from './invites/get-invites';
 export * from './invites/get-user-invites';
 export * from './invites/create-invite';
 

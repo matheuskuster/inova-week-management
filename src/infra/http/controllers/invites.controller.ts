@@ -10,17 +10,12 @@ import {
 import { CurrentUser, Roles } from '../decorators';
 import { InviteViewModel } from '../view-models/invite.view-model';
 
-import {
-  GetInvites,
-  DeleteInvite,
-  GetUserInvites,
-} from '@/application/use-cases';
+import { DeleteInvite, GetUserInvites } from '@/application/use-cases';
 import { AuthenticatedUser } from '@/types/entities';
 
 @Controller('invites')
 export class InvitesController {
   constructor(
-    private readonly getInvites: GetInvites,
     private readonly deleteInvite: DeleteInvite,
     private readonly getUserInvites: GetUserInvites,
   ) {}
@@ -33,17 +28,6 @@ export class InvitesController {
     @CurrentUser() user: AuthenticatedUser,
   ) {
     await this.deleteInvite.execute({ id, userId: user.id });
-  }
-
-  @Roles('admin')
-  @HttpCode(HttpStatus.OK)
-  @Get()
-  async getAll() {
-    const { invites } = await this.getInvites.execute();
-
-    return {
-      invites: invites.map((invite) => InviteViewModel.toHTTP(invite)),
-    };
   }
 
   @Roles('student')
